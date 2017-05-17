@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title><%= title  %></title>
+    <link href="/static/css/neonvectors.css" rel="stylesheet"/>
+    <meta name="description" content="">
+    <meta name="author" content="steven@upritchard.com">
+  </head>
+  <body>
+
+
+    <nav class="nav">
+      <div class="container">
+        <div class="nav-left">
+          <a class="nav-item">
+            <h1 class="title vectorize">neonvectors.io</h1>
+          </a>
+          <% sections.forEach( function(section) { %>
+          <a class="nav-item is-tab is-hidden-mobile" href="<%=section.route%>"><%=section.title%></a>
+          <% }) %>
+        </div>
+
+        <span class="nav-toggle">
+          <span></span>
+          <span></span>
+          <span></span>
+        </span>
+
+        <div class="nav-right nav-menu">
+          <% sections.forEach( function(section) { %>
+          <a class="nav-item is-tab is-hidden-tablet" href="<%=section.route%>"><%=section.title%></a>
+          <% }) %>
+
+          <!-- <a class="nav-item is-tab"> -->
+          <!--   <figure class="image is-16x16" style="margin-right: 8px;"> -->
+          <!--     <img src="http://bulma.io/images/jgthms.png"> -->
+          <!--   </figure> -->
+          <!--   Profile -->
+          <!-- </a> -->
+          <!-- <a class="nav-item is-tab">Log out</a> -->
+        </div>
+      </div>
+    </nav>
+
+    <section class="body-wrapper">
+      <%- include(bodyPartial) %>
+    </section>
+
+    <footer class="footer is-clearfix">
+      <div class="container">
+        <div class="has-text-centered">
+          &copy;none never it's all yours clear fixed
+        </div>
+      </div>
+    </footer>
+    <script src="/static/js/vectorize.js"></script>
+  </body>
+</html>

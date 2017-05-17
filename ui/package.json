@@ -1,0 +1,34 @@
+{
+  "name": "neonvectors-ui",
+  "version": "1.0.0",
+  "description": "neonvectors 2017 ui",
+  "main": "index.html",
+  "watch": {
+    "build": {
+      "patterns": [
+        "src"
+      ],
+      "extensions": "js, ejs, sass, scss"
+    }
+  },
+  "scripts": {
+    "build": ". ./bin/build.sh",
+    "build-sass": "npm-sass ./src/sass/neonvectors.sass > ../server/public/css/neonvectors.css",
+    "build-blogs": "node ./bin/create-blog-json.js",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "watch": "npm-watch"
+  },
+  "author": "steven@upritchard.com",
+  "license": "ISC",
+  "dependencies": {
+    "bulma": "^0.4.1",
+    "d3": "^4.8.0",
+    "font-awesome": "^4.7.0",
+    "lodash": "^4.17.4",
+    "vue": "^2.3.0"
+  },
+  "devDependencies": {
+    "npm-sass": "^2.1.0",
+    "npm-watch": "^0.1.8"
+  }
+}

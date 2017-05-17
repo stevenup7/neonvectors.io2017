@@ -1,0 +1,17 @@
+<div class="container">
+
+  <h1 class="title is-2">Blogs</h1>
+
+  <p>This is a more of a brain dump are for everything from thoughts to notes I would like to find again.</p>
+
+  <section class="section columns">
+    <div class="column">
+      <h2 class="title is-3">Steven's Blog</h2>
+      <%- include('blog-list.ejs', {blogList: blogs.stevenBlogs}) %>
+    </div>b
+    <div class="column">
+      <h2 class="title is-3">Conor's Blog</h2>
+      <%- include('blog-list.ejs', {blogList: blogs.conorBlogs})  %>
+    </div>
+  </section>
+</div>
