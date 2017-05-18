@@ -51,9 +51,7 @@ router.get('/blogs/:id', function (req, res) {
       throw (err);
     }
 
-    console.log(contents);
 
-    contents = contents.replace(/\[[(^\)]\]/, '[$1](http://test.com)');
     var htmlContent = markdown.toHTML(contents);
 
     htmlContent = htmlContent.replace('<h1>', '<h1 class="title is-3">');

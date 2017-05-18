@@ -1,9 +1,15 @@
 
+# build sass (builds to dist)
+npm run build-sass
+
+# build sass (builds to dist)
+npm run build-blogs
+
+# move the built blogs to the server
+mv .src/html/content/blogs/.blogoutput ./../server/data/blogs
+
 # copy in views ejs
 cp -r ./src/html/* ./../server/views
-
-#b uild sass (builds to dist)
-npm run build-sass
 
 # copy in the javscript
 cp ./src/js/vectorize.js ./../server/public/js
