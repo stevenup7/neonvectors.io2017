@@ -9,7 +9,7 @@
         "src",
         "bin"
       ],
-      "extensions": "js, ejs, sass, scss"
+      "extensions": "js, ejs, sass, scss, html, *"
     }
   },
   "scripts": {

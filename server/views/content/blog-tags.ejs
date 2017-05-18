@@ -1,0 +1,17 @@
+<div class="container">
+
+  <h1 class="title">Tags</h1>
+
+  <section class="">
+
+    <% tagList.forEach( function(tag) { %>
+      <h4 class="subtitle is-5"><%- tag.tag %></h4>
+      <ul>
+      <% tag.posts.forEach( function(post) { %>
+      <li><a href="/pages/blogs/<%- post %>"> -  <%- post %></a></li>
+      <% }) %>
+      </ul>
+    <% }) %>
+
+  </section>
+</div>

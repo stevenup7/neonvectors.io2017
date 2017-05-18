@@ -16,5 +16,5 @@ mv ./src/html/content/blogs/.blogoutput ./../server/data/blogs
 cp -r ./src/html/* ./../server/views
 
 # copy in the javscript
-cp ./src/js/vectorize.js ./../server/public/js
+cp ./src/js/*.js ./../server/public/js
 cp ./node_modules/vue/dist/vue.min.js ./../server/public/js/vue.min.js
