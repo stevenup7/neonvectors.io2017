@@ -23,7 +23,6 @@ new Promise(function (resolve, reject) {
 }).then( function (blogFileList) {
 
   try {
-    console.log('making dir');
     fs.mkdirSync(blogOutputPath, 0766);
   } catch (e) {
     console.log(e);
@@ -47,8 +46,7 @@ new Promise(function (resolve, reject) {
     });
 
     var blogJSONFile = JSON.stringify(b.toJSONFull() , '  ', '  ');
-    fs.writeFileSync(blogOutputPath + b.fileName, blogJSONFile);
-
+    fs.writeFileSync(blogOutputPath + b.fileName + '.json', blogJSONFile);
   });
 
   var blogDetailsFile = JSON.stringify(blogs, '  ', '  ');

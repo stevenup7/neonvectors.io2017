@@ -36,7 +36,7 @@ router.get('/blogs', function (req, res) {
     bodyPartial: 'content/blogs.ejs',
     blogs: {
       conorBlogs: [],
-      stevenBlogs: require('./views/content/blogs/blog-list.json')
+      stevenBlogs: require('./data/blogs/blog-list.json')
     }
   });
 });
@@ -44,26 +44,15 @@ router.get('/blogs', function (req, res) {
 
 router.get('/blogs/:id', function (req, res) {
 
-  fs.readFile('./views/content/blogs/' + req.params.id, 'utf8', function (err, contents) {
-
-    if (err) {
-      res.send(err);
-      throw (err);
-    }
+  var blog = require('./data/blogs/' + req.params.id + '.json');
+  console.log(blog);
 
 
-    var htmlContent = markdown.toHTML(contents);
-
-    htmlContent = htmlContent.replace('<h1>', '<h1 class="title is-3">');
-
-    res.render('index.ejs', {
-      title: 'neonvectors.io',
-      sections: sections,
-      bodyPartial: 'content/blog-post.ejs',
-      content: htmlContent
-    });
-
-
+  res.render('index.ejs', {
+    title: 'neonvectors.io',
+    sections: sections,
+    bodyPartial: 'content/blog-post.ejs',
+    content: blog
   });
 
 });

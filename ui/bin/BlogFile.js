@@ -1,4 +1,5 @@
 const fs = require('fs');
+const markdown = require('markdown').markdown;
 
 class BlogFile {
 
@@ -32,7 +33,7 @@ class BlogFile {
       fileName: this.fileName,
       title: this.title,
       tags: this.tags,
-      content: this.content
+      content: markdown.toHTML(this.content)
     };
   }
 
