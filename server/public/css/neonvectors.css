@@ -4337,6 +4337,13 @@ footer {
 section.top-padded {
   padding-top: 2.2rem; }
 
+.tag-list h4.tag-list-title {
+  margin-bottom: 0.5rem;
+  margin-top: 1rem; }
+
+h4.active {
+  font-weight: bold; }
+
 .styled-html-content h1 {
   color: #77defd; }
 

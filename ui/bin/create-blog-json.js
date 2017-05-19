@@ -31,7 +31,7 @@ new Promise(function (resolve, reject) {
   // sort the files
   blogFileList = _.sortBy(blogFileList, 'fileName');
 
-  // keep a runnin list of all tags and blogs
+  // keep a running list of all tags and blogs
   var tags = {};
   var blogs = [];
   // loop over files and make json blog posts out of them
@@ -42,7 +42,10 @@ new Promise(function (resolve, reject) {
       if (!tags.hasOwnProperty(tag)) {
         tags[tag] = [];
       }
-      tags[tag].push(b.fileName);
+      tags[tag].push({
+        fileName: b.fileName,
+        title: b.title
+      });
     });
 
     var blogJSONFile = JSON.stringify(b.toJSONFull() , '  ', '  ');

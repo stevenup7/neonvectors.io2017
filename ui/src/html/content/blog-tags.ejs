@@ -1,14 +1,14 @@
 <div class="container">
 
-  <h1 class="title">Tags</h1>
+  <h1 class="title">Blog Grouped By Tag</h1>
 
-  <section class="">
+  <section class="tag-list">
 
     <% tagList.forEach( function(tag) { %>
-      <h4 class="subtitle is-5"><%- tag.tag %></h4>
+      <h4 class="<%- tag.current ? 'active': '' %> tag-list-title subtitle is-5"><%- tag.tag %></h4>
       <ul>
       <% tag.posts.forEach( function(post) { %>
-      <li><a href="/pages/blogs/<%- post %>"> -  <%- post %></a></li>
+      <li><a href="/pages/blogs/<%- post.fileName %>"><%- post.fileName %> : <%- post.title %></a></li>
       <% }) %>
       </ul>
     <% }) %>
