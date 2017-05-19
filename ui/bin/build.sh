@@ -9,8 +9,8 @@ rm -rf ./src/html/content/blogs/.blogoutput
 npm run build-blogs
 
 # move the built blogs to the server
-rm -rf ../server/data/blogs
-mv ./src/html/content/blogs/.blogoutput ./../server/data/blogs
+rm -rf ../server/data/blog
+mv ./src/html/content/blogs/.blogoutput ./../server/data/blog
 
 # copy in views ejs
 cp -r ./src/html/* ./../server/views

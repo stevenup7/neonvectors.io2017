@@ -4,43 +4,22 @@ const fs = require('fs');
 const markdown = require('markdown').markdown;
 const _ = require('lodash');
 
-var sections = [
-  {
-    route: '/pages/blogs',
-    title: 'Blogs'
-  },
-  {
-    route: '/dataviz',
-    title: 'Data Vizualizations'
-  },
-  {
-    route: '/pages/about',
-    title: 'About'
-  }
-];
+var sections = require('./sections');
 
-router.get('/about', function (req, res) {
-  res.render('index.ejs', {
-    title: 'neonvectors.io',
-    sections: sections,
-    bodyPartial: 'content/about.ejs'
-  });
-});
-
-router.get('/blogs', function (req, res) {
+router.get('/', function (req, res) {
   res.render('index.ejs', {
     title: 'neonvectors.io',
     sections: sections,
     bodyPartial: 'content/blogs.ejs',
     blogs: {
       conorBlogs: [],
-      stevenBlogs: require('./data/blogs/blog-list.json')
+      stevenBlogs: require('../data/blog/blog-list.json')
     }
   });
 });
 
-router.get('/blogs/tags/:tag', function (req, res) {
-  var tagHash = require('./data/blogs/blog-tags.json');
+router.get('/tags/:tag', function (req, res) {
+  var tagHash = require('../data/blog/blog-tags.json');
   var tagList = [];
   _.forEach(tagHash, function (v, k) {
     tagList.push({
@@ -78,14 +57,14 @@ router.get('/blogs/tags/:tag', function (req, res) {
 
 
 
-router.get('/blogs/tags.json', function (req, res) {
-  res.json(require('./data/blogs/blog-tags.json'));
+router.get('/tags.json', function (req, res) {
+  res.json(require('../data/blog/blog-tags.json'));
 });
 
 
-router.get('/blogs/:id', function (req, res) {
+router.get('/:id', function (req, res) {
 
-  var blog = require('./data/blogs/' + req.params.id + '.json');
+  var blog = require('../data/blog/' + req.params.id + '.json');
   console.log(blog);
 
 

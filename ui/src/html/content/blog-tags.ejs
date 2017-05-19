@@ -8,7 +8,7 @@
       <h4 class="<%- tag.current ? 'active': '' %> tag-list-title subtitle is-5"><%- tag.tag %></h4>
       <ul>
       <% tag.posts.forEach( function(post) { %>
-      <li><a href="/pages/blogs/<%- post.fileName %>"><%- post.fileName %> : <%- post.title %></a></li>
+      <li><a href="../<%- post.fileName %>"><%- post.fileName %> : <%- post.title %></a></li>
       <% }) %>
       </ul>
     <% }) %>

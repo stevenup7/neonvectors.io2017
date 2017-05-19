@@ -4,7 +4,7 @@ new Vue({
     tags: {}
   },
   created: function () {
-    fetch ('/pages/blogs/tags.json').then(
+    fetch ('/blog/tags.json').then(
       (response) => {
         response.json().then( (data) => {
           console.log(data);
