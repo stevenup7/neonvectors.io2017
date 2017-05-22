@@ -1,0 +1,10 @@
+{
+  "title": "Mouse moves",
+
+  "scripts": [
+    "mouse-moves.js"
+  ],
+  "libs": [
+    "d3.min.js"
+  ]
+}

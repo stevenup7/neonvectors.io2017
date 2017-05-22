@@ -1,0 +1,20 @@
+<div class="container">
+
+  <p>I was playing around with an arduino project and wanted a live chart to visualize some data coming from the arduino, to simulate this I made a simple graph to show speed the mouse movement.</p>
+
+  <p>I had this working on the last version of this website, this version is updated to use d3 v4</p>
+
+  <p>Move the mouse around and you will see a plot of the distance the mouse moves</p>
+
+  <div id="canvas"
+       style="
+              border-bottom: 1px solid gray;
+              margin: 1rem 0rem;
+              "
+       class="is-fullwidth is-clearfix"></div>
+
+  <p>The key tricks to getting this to work are to take advantage of the data mapping in d3. The .enter() is used to add the new bars and the existing bars are just transistioned to the left. The 0th element is removed after it has transitioned of the left hand edge of the plot. </p>
+  <p>To get smooth animation the easing is set to linear.</p>
+
+  <p>The scale is set dynamically to match the max value in the dataset.</p>
+</div>
