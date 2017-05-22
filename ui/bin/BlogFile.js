@@ -26,9 +26,7 @@ class BlogFile {
     this.tags = tags;
 
     this.content = lines.slice(4).join('\r\n');
-    console.log(this.content);
     this.content = markdown.toHTML(this.content);
-    console.log(this.content);
   }
 
   toJSONFull () {

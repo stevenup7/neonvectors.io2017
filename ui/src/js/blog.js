@@ -7,7 +7,6 @@ new Vue({
     fetch ('/blog/tags.json').then(
       (response) => {
         response.json().then( (data) => {
-          console.log(data);
           this.tags = data;
         });
       });

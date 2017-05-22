@@ -9,13 +9,14 @@
         "src",
         "bin"
       ],
-      "extensions": "js, ejs, sass, scss, html, *"
+      "extensions": "js, ejs, sass, scss, html"
     }
   },
   "scripts": {
     "build": ". ./bin/build.sh",
     "build-sass": "npm-sass ./src/sass/neonvectors.sass > ../server/public/css/neonvectors.css",
     "build-blogs": "node ./bin/create-blog-json.js",
+    "build-viz": "node ./bin/create-viz-json.js",
     "test": "echo \"Error: no test specified\" && exit 1",
     "watch": "npm-watch"
   },

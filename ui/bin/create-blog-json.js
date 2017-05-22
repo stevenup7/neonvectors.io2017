@@ -2,8 +2,9 @@ const _       = require('lodash');
 const fs      = require('fs');
 const process = require('process');
 
-var blogPath  = process.cwd() + '/src/html/content/blogs/';
-var blogOutputPath  = process.cwd() + '/src/html/content/blogs/.blogoutput/';
+var blogPath  = process.cwd() + '/src/blogs/';
+var blogOutputPath  = blogPath + '.blogoutput/';
+
 var BlogFile = require('./BlogFile');
 
 // get a list of all the blog files
@@ -25,6 +26,7 @@ new Promise(function (resolve, reject) {
   try {
     fs.mkdirSync(blogOutputPath, 0766);
   } catch (e) {
+    console.log('Error creating blog output directory');
     console.log(e);
     // igonore exists already
   }

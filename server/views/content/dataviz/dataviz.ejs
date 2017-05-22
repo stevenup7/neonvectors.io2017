@@ -7,7 +7,9 @@
   <section class="top-padded columns">
     <div class="column">
       <h2 class="title is-4">Visualizations</h2>
-      gogogoo
+      <% vizList.forEach(function (viz) { %>
+      <a href="./dataviz/<%- viz %>"><%- viz %></a>
+      <% })%>
     </div>
     <div class="column">
       <h2 class="title is-4">Projects</h2>
