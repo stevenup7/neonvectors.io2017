@@ -1,16 +1,15 @@
-<div class="container">
-
-  <h1 class="title"><%- vizData.title %></h1>
-
-  <section class="top-padded columns">
-      <%- include(vizTemplate) %>
-  </section>
-
-</div>
+<script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js"></script>
 
 <% vizData.libs.forEach(function(script) { %>
    <script src="/static/js/<%- script %>"></script>
 <% }) %>
-<% vizData.scripts.forEach(function(script) { %>
-   <script src="/static/js/<%- script %>"></script>
-<% }) %>
+
+<div class="container">
+
+  <h1 class="title"><%- vizData.title %></h1>
+
+  <section id="viz-page-container" class="top-padded columns">
+      <%- include(vizTemplate) %>
+  </section>
+
+</div>

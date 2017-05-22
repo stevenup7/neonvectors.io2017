@@ -8,7 +8,7 @@
 
   <div id="canvas"
        style="
-              border-bottom: 1px solid gray;
+              border-bottom: 1px solid #ccc;
               margin: 1rem 0rem;
               "
        class="is-fullwidth is-clearfix"></div>
@@ -17,4 +17,12 @@
   <p>To get smooth animation the easing is set to linear.</p>
 
   <p>The scale is set dynamically to match the max value in the dataset.</p>
+
+  <% vizData.scripts.forEach(function(script) { %>
+  <script src="/static/js/mouse-moves.js %>"></script>
+  <% }) %>
+
+
+  <pre class="prettyprint"><%- include('../../../public/js/mouse-moves.js') %></pre>
+
 </div>

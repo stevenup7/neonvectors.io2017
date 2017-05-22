@@ -5,11 +5,11 @@
   var currPos = false; // the current mouse postion
   var marginLeft = 100;
   var data = [];
-  var graphHeight = 400;
+  var graphHeight = 100;
   var turnCounter = 0;
   var elWidth = document.getElementById('canvas').offsetWidth;
 
-  var dataLength = Math.floor((elWidth - marginLeft) / 12);
+  var dataLength = Math.floor((elWidth - marginLeft * 2) / 12);
 
   var canvas = d3.select('#canvas').append('svg')
         .attr('width', elWidth)
@@ -53,9 +53,12 @@
       return i * 12 + marginLeft;
     };
 
-    var co = function () {
-      return 'rgb(242, 94, 237)';
-    };
+    var blue = 'rgb(119, 222, 253)';
+    var pink = 'rgb(242, 94, 237)';
+
+    var co = d3.scaleLinear()
+          .domain([0,max])
+          .range([blue, pink]);
 
     barList
       .attr('height', graphHeight)
@@ -64,6 +67,7 @@
       .transition()
       .duration(intervalTime)
       .ease(d3.easeLinear)
+      .style('fill', co)
       .attr ('width', function (d, i) {
         if (i == 0 && data.length > dataLength){
           return 0;
@@ -126,18 +130,6 @@
   function linearDist(p1, p2 ){
     return Math.sqrt((p1.x - p2.x) * (p1.x - p2.x) + (p1.y - p2.y) * (p1.y - p2.y));
   }
-
-  //  document.getElementById('start').onclick = toggleRunning;
-
-  // function toggleRunning (e) {
-  //   console.log('toggle', interval);
-  //   if (interval === false) {
-  //     interval = setInterval(doIt, intervalTime);
-  //   } else {
-  //     clearInterval(interval);
-  //     interval = false;
-  //   }
-  // }
 
   // set up the mouse position tracker
   document.onmousemove = handleMouseMove;

@@ -4360,3 +4360,7 @@ p {
 
 .styled-html-content li {
   margin-left: 0.5rem; }
+
+/* add some padding to the pretty printed code  */
+.container pre.prettyprint {
+  padding: 1em; }
