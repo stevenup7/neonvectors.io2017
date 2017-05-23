@@ -2,6 +2,8 @@
 
 .blogoutput
 server/data
+server/public
+
 
 # emacs files
 *~
