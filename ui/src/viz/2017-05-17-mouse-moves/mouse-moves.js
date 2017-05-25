@@ -3,18 +3,20 @@
   var intervalTime = 50; // ms
   var lastPos = false; // the last mouse position
   var currPos = false; // the current mouse postion
-  var marginLeft = 100;
   var data = [];
-  var graphHeight = 100;
   var turnCounter = 0;
-  var elWidth = document.getElementById('canvas').offsetWidth;
+  var dataLength;
 
-  var dataLength = Math.floor((elWidth - marginLeft * 2) / 12);
+  var chart = new D3VizHelper('#canvas', elWidth, 100, {
+    top: 0,
+    left: 100,
+    bottom: 0,
+    right: 100
+  });
 
-  var canvas = d3.select('#canvas').append('svg')
-        .attr('width', elWidth)
-        .attr('height', graphHeight);
-
+  var canvas = chart.canvas;
+  var elWidth = chart.width;
+  dataLength = Math.floor((chart.width - chart.margins.left * 2) / 12);
 
   // track the mouse movement every (intervalTime)ms
   function doIt () {
@@ -35,22 +37,23 @@
 
   doIt();
 
+
   function makeBars () {
     var max = d3.max(data);
 
     var barScale = d3.scaleLinear()
           .domain([0, max])
-          .range([0, graphHeight]);
+          .range([0, chart.height]);
 
     var barList = canvas.selectAll('.bar')
           .data(data);
 
     var barY = function (d){
-      return graphHeight - barScale(d);
+      return chart.height - barScale(d);
     };
 
     var barX = function (d, i) {
-      return i * 12 + marginLeft;
+      return i * 12 + chart.margins.left;
     };
 
     var blue = 'rgb(119, 222, 253)';
@@ -61,7 +64,7 @@
           .range([blue, pink]);
 
     barList
-      .attr('height', graphHeight)
+      .attr('height', chart.height)
       .attr('y', barY)
       .attr('x', barX)
       .transition()
@@ -100,7 +103,7 @@
       .attr('x', function (d, i) {
         return barX(d, i);
       })
-      .attr('y', graphHeight)
+      .attr('y', chart.height)
       .attr('height', 0)
       .attr('x' , function (d, i) {
           return barX(d, i);
@@ -109,7 +112,7 @@
       .duration(intervalTime)
       .ease(d3.easeLinear)
       .attr('y', barY)
-      .attr('height', graphHeight)
+      .attr('height', chart.height)
       .attr('x' , function (d, i) {
         if (data.length > dataLength) {
           return barX(d, i -1);

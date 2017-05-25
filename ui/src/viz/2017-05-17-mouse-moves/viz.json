@@ -5,6 +5,7 @@
     "mouse-moves.js"
   ],
   "libs": [
-    "d3.min.js"
+    "d3.min.js",
+    "d3-helpers.js"
   ]
 }
