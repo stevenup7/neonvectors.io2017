@@ -2,6 +2,24 @@
 # build sass (builds to dist)
 npm run build-sass
 
+# make directories we need
+if [ ! -d ../server/public/js ]; then
+    echo "making directory"
+    mkdir ../server/public/js
+fi
+
+if [ ! -d ../server/data ]; then
+    echo "making directory"
+    mkdir ../server/data
+fi
+
+
+# copy scripts across from src
+cp ./src/js/*.js ./../server/public/js
+
+# copy the libs across
+cp ./node_modules/vue/dist/vue.min.js ./../server/public/js/
+cp ./node_modules/d3/build/d3.min.js ./../server/public/js/
 
 # build blogs
 #  1. remove any temp build files
@@ -27,8 +45,3 @@ find ../server/data/viz/ -name *.js -exec mv '{}' ../server/public/js/ \;
 
 # copy in views ejs
 cp -r ./src/html/* ./../server/views
-
-# copy in the javscript
-cp ./src/js/*.js ./../server/public/js
-cp ./node_modules/vue/dist/vue.min.js ./../server/public/js/
-cp ./node_modules/d3/build/d3.min.js ./../server/public/js/
