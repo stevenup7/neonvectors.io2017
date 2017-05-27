@@ -4364,3 +4364,13 @@ p {
 /* add some padding to the pretty printed code  */
 .container pre.prettyprint {
   padding: 1em; }
+
+.axis {
+  stroke: #ccc; }
+
+.axis-label {
+  font-weight: 300;
+  fill: #666; }
+
+g {
+  fill: green; }

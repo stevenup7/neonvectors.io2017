@@ -8,6 +8,7 @@ class D3VizHelper {
     this.height = height;
     this.margins = margins;
 
+    this.availableHeight = this.height - this.margins.top - this.margins.bottom;
     /* **DEVBLOCK BEGIN ** */
     if (this.wrapperEl.indexOf('#') !== 0) {
       throw ('Wrapper element must be an id selector');
@@ -29,5 +30,28 @@ class D3VizHelper {
       .attr('height', this.height);
 
   }
+
+  addAxis () {
+
+  }
+
+}
+
+
+
+function get1SigFig (num) {
+  var f = 1;
+  var x;
+
+  // there must be a better way to do this but I'm tired now
+  while(f < num) {
+    f = f * 10;
+  }
+  f = f / 10;
+
+  x = Math.floor(num / f);
+
+  //console.log(num, x, x * f);
+  return x * f;
 
 }
