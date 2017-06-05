@@ -1,15 +1,13 @@
 (function () {
-  console.log('mouse moves 2');
-  var currPos;
-  var radius = 150;
-  var runNumber = 0;
+  var currPos;        // track the current postion of the mouse;
+  var radius = 150;   // radius of the circle
+  var runNumber = 0;  // how many tries
 
   var data = {
     run1: [],
     run2: [],
     run3: []
-  };
-  window.data = data;
+  }; // store data from 3 runs
 
   var chart = new D3VizHelper('#canvas', undefined, 520, {
     top: 100,
@@ -18,20 +16,13 @@
     right: 100
   });
 
+  // draw the base circle - the animation path
   chart.canvas.append('circle')
     .attr('cx', radius + chart.margins.left)
     .attr('cy', radius + chart.margins.top)
     .attr('r', radius)
     .attr('fill', 'white')
-    .attr('stroke', 'gray');
-
-
-  var mouseCircle = chart.canvas.append('circle');
-  mouseCircle
-    .attr('cx', 0)
-    .attr('cy', 0)
-    .attr('r', 5)
-    .attr('fill', '#fcc');
+    .attr('stroke', '#ddd');
 
   var circle = chart.canvas.append('circle');
   var circleStart = {
@@ -49,7 +40,6 @@
       var offsy = [];
       circle.transition()
         .attrTween ('cx', function (d, i, a) {
-          offsx = [];
           return function (t) {
             var x = (circleStart.x - radius) + radius * Math.cos (2*Math.PI * t);
             offsx.push(x - currPos.x);
@@ -57,7 +47,6 @@
           };
         })
         .attrTween('cy', function (t) {
-          offsy = [];
           return function (t) {
             var y = circleStart.y + radius * Math.sin (2 * Math.PI * t);
             offsy.push(y - currPos.y);
@@ -74,7 +63,8 @@
           } else {
             var run = 'run' + (runNumber -1);
             console.log(run);
-            window.data[run] = [];
+            data[run] = [];
+
             for(var i = 0; i < offsx.length; i++) {
               var pos = {x:offsx[i], y:offsy[i]};
               var dist = linearDist({x:0, y:0},pos);
@@ -83,17 +73,20 @@
                 dist: dist
               });
             }
+            if (run === 'run3') {
+              // store the data in localStorage
+              // todo put it on the window or offer to
+              window.localStorage.setItem('mouseMoves2Data', JSON.stringify(data));
+            }
           }
         });
 
     });
 
-
-  /// calc the distance between 2 points
+  // calc the distance between 2 points
   function linearDist(p1, p2 ){
     return Math.sqrt((p1.x - p2.x) * (p1.x - p2.x) + (p1.y - p2.y) * (p1.y - p2.y));
   }
-
 
   var canvas = document.getElementById('canvas');
   canvas.onmousemove = handleMouseMove;
@@ -115,8 +108,6 @@
   var canvasPos = findPos(canvas);
   // based on this stack overflow answer
   // http://stackoverflow.com/questions/7790725/javascript-track-mouse-position
-
-
   function handleMouseMove(event) {
     var eventDoc, doc, body;
     event = event || window.event; // IE-ism
@@ -135,11 +126,6 @@
       x: event.pageX - canvasPos.x,
       y: event.pageY - canvasPos.y
     };
-
-    // mouseCircle
-    //   .attr('cx', currPos.x)
-    //   .attr('cy', currPos.y);
-
 
   }
 
