@@ -1,14 +1,15 @@
 new Vue({
-  el: '#blog-tags',
+  el: '#vc',
   data: {
-    tags: {}
+    pageData: pageData,
+    counter: 0
   },
   created: function () {
-    fetch ('/blog/tags.json').then(
-      (response) => {
-        response.json().then( (data) => {
-          this.tags = data;
-        });
-      });
+    console.log(this.counter);
+  },
+  methods: {
+    goNextPage: function () {
+      console.log(pageData);
+    }
   }
 });
