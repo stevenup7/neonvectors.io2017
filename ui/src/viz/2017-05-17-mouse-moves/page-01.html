@@ -15,7 +15,7 @@
   <p>The key tricks to getting this to work are to take advantage of the data mapping in d3. The .enter() is used to add the new bars and the existing bars are just transistioned to the left. The 0th element is removed after it has transitioned of the left hand edge of the plot. </p>
   <p>To get smooth animation the easing is set to linear.</p>
 
-  <p>The scale is set dynamically to match the max value in the dataset.</p>
+  <p>The scale is set dynamically to match the max value in the dataset. What was tricky about this was figuring out how to dispaly the y-axis in aw way that was readable and did not jump around. </p>
 
   <% vizData.scripts.forEach(function(script) { %>
   <script src="/static/js/mouse-moves.js %>"></script>

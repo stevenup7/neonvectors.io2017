@@ -68,7 +68,7 @@
             for(var i = 0; i < offsx.length; i++) {
               var pos = {x:offsx[i], y:offsy[i]};
               var dist = linearDist({x:0, y:0},pos);
-              window.data[run].push({
+              data[run].push({
                 pos: pos,
                 dist: dist
               });

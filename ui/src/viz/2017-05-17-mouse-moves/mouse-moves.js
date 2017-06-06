@@ -1,4 +1,6 @@
 (function () {
+
+  console.log('v0.1');
   var interval = false;
   var intervalTime = 50; // ms
   var lastPos = false; // the last mouse position
@@ -69,7 +71,7 @@
       .duration(200)
       .attr('transform', function () {
 
-        var t = chart.height - chart.margins.bottom - barY(labelText);
+        var t = barY(labelText);
         var l = 0;
         return 'translate(' + l + ',' + t + ')';
       });
@@ -126,15 +128,16 @@
 
   function makeBars () {
     max = d3.max(data);
+
     setLabelPos();
 
     barHeight = d3.scaleLinear()
-          .domain([0, max])
-          .range([chart.availableHeight, chart.margins.top]);
+      .domain([0, max])
+      .range([0, chart.availableHeight]);
 
     // get the y pos for the bar
     barY = function (d){
-      return chart.availableHeight - barHeight(d);
+      return chart.margins.top + chart.availableHeight - barHeight(d);
     };
 
     // calc the x position of a bar
@@ -154,10 +157,8 @@
           .data(data);
 
     barList
-      .attr('height',barY)
-      .attr('y', function (d) {
-        return chart.height - chart.margins.bottom - barY(d);
-      })
+      .attr('height',barHeight)
+      .attr('y', barY)
       .attr('x', barX)
       .transition()
       .duration(intervalTime)
@@ -210,10 +211,8 @@
       .transition()
       .duration(intervalTime)
       .ease(d3.easeLinear)
-      .attr('height',barY)
-      .attr('y', function (d) {
-        return chart.height - chart.margins.bottom - barY(d);
-      })
+      .attr('height', 0)
+      .attr('y', barY(0))
       .attr('x' , function (d, i) {
         // is the data array full ?
         if (data.length > dataLength) {
