@@ -8,6 +8,7 @@ server/public
 # emacs files
 *~
 \#*\#
+.tern-port
 
 # Logs
 logs
