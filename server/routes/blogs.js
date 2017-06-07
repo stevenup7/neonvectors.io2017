@@ -63,10 +63,8 @@ router.get('/tags.json', function (req, res) {
 
 
 router.get('/:id', function (req, res) {
-
   var blog = require('../data/blog/' + req.params.id + '.json');
   console.log(blog);
-
 
   res.render('index.ejs', {
     title: 'neonvectors.io',

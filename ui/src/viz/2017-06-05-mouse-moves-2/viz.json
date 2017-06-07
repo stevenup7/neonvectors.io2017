@@ -2,7 +2,7 @@
   "title": "Mouse moves 2",
   "pages": [
     {
-      "name": "Data Collection",
+      "name": "Mouse Moves 2: Data Collection",
       "src": "page-01.html",
       "scripts": [
         "mouse-moves-2.js"

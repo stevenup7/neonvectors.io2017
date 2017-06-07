@@ -3,7 +3,7 @@
 .blogoutput
 server/data
 server/public
-
+server/views
 
 # emacs files
 *~
