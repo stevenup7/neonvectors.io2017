@@ -1,4 +1,6 @@
-<div class="container">
+<div class="container styled-html-content">
+
+  <h1>Mouse Moves</h1>
 
   <p>I was playing around with an arduino project and wanted a live chart to visualize some data coming from the arduino, to simulate this I made a simple graph to show speed the mouse movement.</p>
 
@@ -17,11 +19,5 @@
 
   <p>The scale is set dynamically to match the max value in the dataset. What was tricky about this was figuring out how to dispaly the y-axis in aw way that was readable and did not jump around. </p>
 
-  <% vizData.scripts.forEach(function(script) { %>
-  <script src="/static/js/mouse-moves.js %>"></script>
-  <% }) %>
-
-
-  <pre class="prettyprint"><%- include('../../../public/js/mouse-moves.js') %></pre>
 
 </div>
