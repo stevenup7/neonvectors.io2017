@@ -1,13 +1,11 @@
 
-
 <script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js"></script>
-<% vizData.pages[0].libs.forEach(function(script) { %>
+<% vizData.libs.forEach(function(script) { %>
    <script src="/static/js/<%- script %>"></script>
 <% }) %>
 
 <div class="container styled-html-content">
   <div id="vc">
-    {{counter}}
   </div>
 </div>
 

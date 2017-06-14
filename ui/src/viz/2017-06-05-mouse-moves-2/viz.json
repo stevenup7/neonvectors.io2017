@@ -6,10 +6,6 @@
       "src": "page-01.html",
       "scripts": [
         "mouse-moves-2.js"
-      ],
-      "libs": [
-        "d3.min.js",
-        "d3-helpers.js"
       ]
     },
     {
@@ -17,13 +13,11 @@
       "src": "page-02.html",
       "scripts": [
         "mouse-moves-2.2.js"
-      ],
-      "libs": [
-        "d3.min.js",
-        "d3-helpers.js"
       ]
     }
-
-
+  ],
+  "libs": [
+    "d3.min.js",
+    "d3-helpers.js"
   ]
 }

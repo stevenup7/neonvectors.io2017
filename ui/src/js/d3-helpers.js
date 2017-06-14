@@ -36,6 +36,30 @@ class D3VizHelper {
 
   }
 
+
+  nvcolors10 () {
+    var idx = 0;
+    return function (i) {
+      var pallet = [
+        'F25EED',
+        '77DEFD',
+        '00BFB2',
+        'DBD56E',
+        'F06449',
+        'DADAD9',
+        '9EB25D',
+        '6457A6',
+        '5C2751',
+        'DB5461'
+      ];
+      console.log(idx, i);
+      if (typeof i === 'undefined') {
+        i = idx % pallet.length;
+      }
+      idx ++;
+      return pallet[i];
+    };
+  }
 }
 
 

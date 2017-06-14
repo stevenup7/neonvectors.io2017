@@ -17,6 +17,7 @@ var yScale = d3.scaleLinear()
 
 function getLineFn (xprop, yprop) {
   return d3.line()
+    .curve(d3.curveBasis)
     .x(function(d) {
       return xScale(d[xprop]);
     })
@@ -34,19 +35,33 @@ var minDist = 0;
 rawData.run1.forEach(function (d, i) {
   data.push({
     x: i,
-    y: d.dist
+    y: d.dist,
+    yx: d.pos.x,
+    yy: d.pos.y
   });
 
-  maxDist = Math.max(d.dist, maxDist);
-  minDist = Math.min(d.dist, minDist);
+  maxDist = Math.max(d.pos.x, d.pos.y, d.dist, maxDist);
+  minDist = Math.min(d.pos.x, d.pos.y, d.dist, minDist);
 });
 
 xScale.domain([0, data.length]);
 yScale.domain([minDist, maxDist]);
 console.log(data);
-var valueline = getLineFn('x', 'y');
 
-chart.canvas.append("path")
-  .data([data])
-  .attr("class", "line")
-  .attr("d", valueline);
+var props = ['y', 'yx', 'yy'];
+
+var c = chart.nvcolors10();
+
+props.forEach( (p) => {
+  var valueline = getLineFn('x', p);
+  chart.canvas.append("path")
+    .data([data])
+    .attr("class", "line")
+    .style("stroke", function () {
+      var col = c();
+      console.log(col);
+      return col;
+    })
+    .attr("d", valueline);
+
+});

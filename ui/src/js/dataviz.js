@@ -21,25 +21,61 @@ function addTempScript( src ) {
   document.body.appendChild( s );
 }
 
+
+// register
+Vue.component('src-view', {
+  props: ['src'],
+  data: function () {
+    return {
+      srcStr: 'TODO: // I am a vue component'
+    };
+  },
+  template: `
+    <pre class="" v-html='srcStr'></pre>
+  `,
+  watch: {
+    src : function () {
+      this.loadSrc();
+    }
+  },
+  methods: {
+    loadSrc: function () {
+      loadPage(this.src).then ((src) => {
+        this.srcStr = src;
+        // remove the prettyprinted class so it redoes the formatting
+        this.$el.classList.remove('prettyprinted');
+        this.$el.classList.add('prettyprint');
+        // let the binding happen
+        setTimeout(function () {
+          PR.prettyPrint();
+        }, 0);
+      });
+    }
+  }
+});
+
+
 new Vue({
   el: '#vc',
   template: `
   <section id="viz-page-container" class="top-padded">
-    <div id="loadedSrc" class="container" v-html="pageSrc">
+    <div id="loadedSrc" class="container" v-html="pageHTML">
     </div>
 
     <div class="container">
        <button id="goPrev" v-if="notFirstPage()" v-on:click="goPrevPage()">Previous Page {{currpage}}</button>
        <button id="goNext" v-if="notLastPage()" v-on:click="goNextPage()">Next Page {{currpage}}</button>
        <div>&nbsp;</div>
-       <pre class="prettyprint">TODO: // make me a vue component</pre>
+       {{srcFile}}
+       <src-view v-bind:src='srcFile'></src-view>
     </div>
   </section>
   `,
   replace: false,
   data: {
     title: 'none',
-    pageSrc: 'test',
+    pageHTML: 'test',
+    srcFile: null,
     currpage: 0
   },
   created: function () {
@@ -50,11 +86,15 @@ new Vue({
   methods: {
     loadCurrPage: function () {
       loadPage(pageData.id + '/' + pageData.pages[this.currpage].src).then((data) => {
-        this.pageSrc = data;
+        this.pageHTML = data;
         var tempScripts = document.getElementsByClassName('temp-script');
         removeTempScripts();
         addTempScript('/static/js/' + pageData.pages[this.currpage].scripts[0]);
+        this.getSrc();
       });
+    },
+    getSrc: function () {
+      this.srcFile =  '/static/js/' + pageData.pages[this.currpage].scripts[0];
     },
     notLastPage: function () {
       return this.currpage < pageData.pages.length - 1;
@@ -70,7 +110,5 @@ new Vue({
       this.currpage --;
       this.loadCurrPage();
     }
-
-
   }
 });
