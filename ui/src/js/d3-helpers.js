@@ -8,7 +8,8 @@ class D3VizHelper {
     this.height = height;
     this.margins = margins;
 
-    this.availableHeight = this.height - this.margins.top - this.margins.bottom;
+    this.availableHeight = this.height - this.margins.top  - this.margins.bottom;
+    this.availableWidth  = this.width  - this.margins.left - this.margins.right;
     /* **DEVBLOCK BEGIN ** */
     if (this.wrapperEl.indexOf('#') !== 0) {
       throw ('Wrapper element must be an id selector');
