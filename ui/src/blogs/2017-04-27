@@ -6,9 +6,22 @@ Conor just started a new job and does not have time for making a new website so 
 
 I have a few goals for this build:
 
+* practice data visualization
 * learn some new tech
 * catch up on css/sass since I have been in jobs where it was another team building this for me over the last few years.
 
 Trying to pick a lightweight node framework for this project, something that wont get in the way of the main gloals of the project. My first google search came up with [vanilla.js](http://vanilla-js.com). This seemed a little too light for my tastes/needs.
 
-Then my friend [dotDeeka](https://github.com/dotDeeka) recommended Vue.js which fits the bill really nicely its super light.
+Then my friend [dotDeeka](https://github.com/dotDeeka) recommended Vue.js which fits the bill really nicely its super light. Here is what convinced me
+
+
+    <div id="app">
+      {{ message }}
+    </div>
+
+    var app = new Vue({
+      el: '#app',
+      data: {
+        message: 'Hello Vue!'
+      }
+    })

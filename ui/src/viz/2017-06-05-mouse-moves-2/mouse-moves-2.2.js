@@ -6,13 +6,16 @@ var chart = new D3VizHelper('#canvas', undefined, 520, {
   bottom: 20,
   right: 100
 });
+
 var radius = 100;
 
 var xScale = d3.scaleLinear()
-      .range([chart.availableHeight, 0]);
+      .range([chart.margins.left, chart.availableWidth]);
 
 var yScale = d3.scaleLinear()
-      .range([chart.availableHeight, 0]);
+      .range([chart.availableHeight, chart.margins.top]);
+
+console.log([chart.availableWidth, chart.margins.left, chart.availableHeight, chart.margins.top]);
 
 
 function getLineFn (xprop, yprop) {
@@ -33,35 +36,70 @@ var maxDist = 0;
 var minDist = 0;
 
 rawData.run1.forEach(function (d, i) {
+  var cAngle = getAngle(rawData.circle, d.circlePos);
+  var mAngle = getAngle(rawData.circle, d.mousePos);
+  var dist = linearDist(d.circlePos, d.mousePos);
+  var actualDist = dist;
+  var leadLag = cAngle - mAngle;
+  if (leadLag > 180) {
+    leadLag = cAngle - mAngle - 360;
+  }
+  if (leadLag < -180) {
+    leadLag =leadLag = cAngle - mAngle + 360;
+  }
+  var radius = linearDist(rawData.circle, d.mousePos) - rawData.circle.radius;
+  if (i > 100) {
+    if (cAngle < 10) {
+      cAngle = cAngle + 360;
+    }
+  }
+  dist = Math.max(dist - rawData.target.radius, 0);
   data.push({
     x: i,
-    y: d.dist,
-    yx: d.pos.x,
-    yy: d.pos.y
+    angle: cAngle,
+    dist: dist,
+    distActual: actualDist,
+    leadLag: leadLag,
+    radius: radius
   });
 
-  maxDist = Math.max(d.pos.x, d.pos.y, d.dist, maxDist);
-  minDist = Math.min(d.pos.x, d.pos.y, d.dist, minDist);
+
+  maxDist = Math.max(leadLag, dist, maxDist, actualDist, radius);
+  minDist = Math.min(leadLag, dist, minDist, actualDist, radius);
 });
 
-xScale.domain([0, data.length]);
+xScale.domain([0, 360]);
 yScale.domain([minDist, maxDist]);
-console.log(data);
 
-var props = ['y', 'yx', 'yy'];
+var props = ['dist', 'distActual', 'leadLag', 'radius'];
 
 var c = chart.nvcolors10();
+var k = new D3VizKey('#key');
 
 props.forEach( (p) => {
-  var valueline = getLineFn('x', p);
+  var valueline = getLineFn('angle', p);
+  var col = c();
+  k.addLine(p, '#' + col, 1);
   chart.canvas.append("path")
     .data([data])
     .attr("class", "line")
     .style("stroke", function () {
-      var col = c();
-      console.log(col);
       return col;
     })
     .attr("d", valueline);
-
 });
+
+// get the angle that this line is at
+function getAngle (c, p) {
+  var dy = c.y - p.y;
+  var dx = c.x - p.x;
+  var theta = Math.atan2(dy, dx);
+  return (theta + Math.PI) % (2 * Math.PI) * (180 / Math.PI);;
+}
+
+function linearDist(p1, p2 ){
+  return Math.sqrt((p1.x - p2.x) * (p1.x - p2.x) + (p1.y - p2.y) * (p1.y - p2.y));
+}
+
+chart.addYAxis('y-axis', yScale);
+chart.addXAxis('x-axis', xScale);

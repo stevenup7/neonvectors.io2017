@@ -16,10 +16,15 @@
     right: 100
   });
 
+  var circleCenter = {
+    x: radius + chart.margins.left,
+    y: radius + chart.margins.top
+  };
+
   // draw the base circle - the animation path
   chart.canvas.append('circle')
-    .attr('cx', radius + chart.margins.left)
-    .attr('cy', radius + chart.margins.top)
+    .attr('cx', circleCenter.x)
+    .attr('cy', circleCenter.y)
     .attr('r', radius)
     .attr('fill', 'white')
     .attr('stroke', '#ddd');
@@ -42,14 +47,16 @@
         .attrTween ('cx', function (d, i, a) {
           return function (t) {
             var x = (circleStart.x - radius) + radius * Math.cos (2*Math.PI * t);
-            offsx.push(x - currPos.x);
+            // store the circles x position and the mouses x position
+            offsx.push([x, currPos.x]);
             return x;
           };
         })
         .attrTween('cy', function (t) {
           return function (t) {
             var y = circleStart.y + radius * Math.sin (2 * Math.PI * t);
-            offsy.push(y - currPos.y);
+            // store the circles y position and the mouses y position
+            offsy.push([y, currPos.y]);
             return y;
           };
         })
@@ -66,17 +73,22 @@
             data[run] = [];
 
             for(var i = 0; i < offsx.length; i++) {
-              var pos = {x:offsx[i], y:offsy[i]};
-              var dist = linearDist({x:0, y:0},pos);
+              var circlePos = {x: offsx[i][0], y:offsy[i][0]};
+              var mousePos  = {x: offsx[i][1], y:offsy[i][1]};
               data[run].push({
-                pos: pos,
-                dist: dist
+                circlePos: circlePos,
+                mousePos: mousePos
               });
             }
-            if (run === 'run3') {
+            if (run === 'run1') {
               // store the data in localStorage
               // todo put it on the window or offer to
+              data.circle = circleCenter;
+              data.circle.radius = radius;
+              data.target = {};
+              data.target.radius = 20;
               window.localStorage.setItem('mouseMoves2Data', JSON.stringify(data));
+              alert('you can now go to the next page to see the data');
             }
           }
         });
@@ -87,6 +99,7 @@
   function linearDist(p1, p2 ){
     return Math.sqrt((p1.x - p2.x) * (p1.x - p2.x) + (p1.y - p2.y) * (p1.y - p2.y));
   }
+
 
   var canvas = document.getElementById('canvas');
   canvas.onmousemove = handleMouseMove;

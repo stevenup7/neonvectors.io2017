@@ -8,10 +8,23 @@
 }
 
 g {
-    fill: green;
+    fill: none;
 }
 
 path.line {
     fill: none;
     stroke: gray;
+}
+
+
+.x-axis path,
+.x-axis line,
+.y-axis path,
+.y-axis line {
+    stroke: gray;
+}
+.x-axis .tick text,
+.y-axis .tick text {
+    fill: gray;
+    stroke: none;
 }
