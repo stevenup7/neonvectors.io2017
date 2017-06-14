@@ -48,6 +48,12 @@ rawData.run1.forEach(function (d, i) {
     leadLag =leadLag = cAngle - mAngle + 360;
   }
   var radius = linearDist(rawData.circle, d.mousePos) - rawData.circle.radius;
+  var actualRadius = radius;
+  if (radius > 0) {
+    radius = Math.max(radius - rawData.target.radius, 0);
+  } else {
+    radius = Math.min(radius + rawData.target.radius, 0);
+  }
   if (i > 100) {
     if (cAngle < 10) {
       cAngle = cAngle + 360;
@@ -60,26 +66,27 @@ rawData.run1.forEach(function (d, i) {
     dist: dist,
     distActual: actualDist,
     leadLag: leadLag,
-    radius: radius
+    radius: radius,
+    actualRadius: actualRadius
   });
 
 
-  maxDist = Math.max(leadLag, dist, maxDist, actualDist, radius);
-  minDist = Math.min(leadLag, dist, minDist, actualDist, radius);
+  maxDist = Math.max(leadLag, dist, maxDist, actualDist, radius, actualRadius);
+  minDist = Math.min(leadLag, dist, minDist, actualDist, radius, actualRadius);
 });
 
 xScale.domain([0, 360]);
 yScale.domain([minDist, maxDist]);
 
-var props = ['dist', 'distActual', 'leadLag', 'radius'];
-
+var props = ['dist', 'distActual', 'leadLag', 'radius', 'actualRadius'];
+var props = ['dist', 'leadLag', 'radius'];
 var c = chart.nvcolors10();
 var k = new D3VizKey('#key');
-
+//c();c();c();c();
 props.forEach( (p) => {
   var valueline = getLineFn('angle', p);
   var col = c();
-  k.addLine(p, '#' + col, 1);
+  k.addLine(p, '#' + col, 2);
   chart.canvas.append("path")
     .data([data])
     .attr("class", "line")

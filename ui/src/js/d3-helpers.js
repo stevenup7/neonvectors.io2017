@@ -58,10 +58,10 @@ class D3VizHelper {
       var pallet = [
         'F25EED',
         '77DEFD',
+        'F06449',
         '00BFB2',
         '6457A6',
         'DBD56E',
-        'F06449',
         'DADAD9',
         '9EB25D',
         '5C2751',
@@ -93,7 +93,7 @@ class D3VizKey {
     wrapper.classList.add('key-row');
     var key = document.createElement('div');
     key.classList.add('key-line');
-    key.style.cssText = 'border-bottom: 1px solid ' + color + '; width: 10px; height: 10px; float: left' ;
+    key.style.cssText = 'border-bottom: ' + strokeWidth + 'px solid ' + color + '; width: 10px; height: 13px; float: left; margin-right: 5px;' ;
     console.log(color);
     var nameEl = document.createElement('span');
     nameEl.appendChild(document.createTextNode(' ' + name));
