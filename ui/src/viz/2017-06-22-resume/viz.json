@@ -1,0 +1,17 @@
+{
+  "title": "Mouse moves",
+  "pages": [
+    {
+      "name": "Mouse Moves",
+      "src": "page-01.html",
+      "scripts": [
+        "resume.js"
+      ]
+    }
+  ],
+  "libs": [
+    "d3.min.js",
+    "d3-helpers.js",
+    "moment.min.js"
+  ]
+}

@@ -1,0 +1,157 @@
+{
+  "type": "jerb-done",
+  "jobs": [
+    {
+      "title": "UI Tech Lead at Fidelity",
+      "subTitles": {
+        "Company Name": "Veritude",
+        "Dates Employed": "Aug 2015 - Present",
+        "Employment Duration": "1 yr 11 mos",
+        "Location": "Smithfield, RI"
+      },
+      "bodyHTML": "Angular and Node development for Fidelity Estate Planner application."
+    },
+    {
+      "title": "Senior Application Developer (Frontend)",
+      "subTitles": {
+        "Company Name": "CVS Health",
+        "Dates Employed": "Aug 2014 - Aug 2015",
+        "Employment Duration": "1 yr 1 mo",
+        "Location": "Woonsock, RI"
+      },
+      "bodyHTML": "    - developing new systems AngularJS<br>- new features and maintaining existing BackboneJS projects<br>- new features and maintaining existing JQuery/RequireJS single page apps<br>- continuous integration using Grunt and Jenkins<br>- deployment with docker and vagrant<br>- testing with mocha, selenium<br>- process improvement including agile methodologies"
+    },
+    {
+      "title": "Development Manager, Senior UI Engineer",
+      "subTitles": {
+        "Company Name": "Astonish Results",
+        "Dates Employed": "Aug 2012 - Jul 2014",
+        "Employment Duration": "2 yrs",
+        "Location": "Warwick, RI"
+      },
+      "bodyHTML": "Employed as Senior UI Engineer the promoted to Development Manager.<br><br>Lead team of developers building Astonish's next generation SaaS platform. Also lead developer on the front team, heavily involved in UX and product specifications.<br><br>Key Achievements:<br>   - Recruitment of Javascript and Java engineers, grew team.<br>   - Helped implement Agile methodologies getting team to deliver predictably.<br>   - Mentored developers in coding and interpersonal communication.<br><br>Key Projects:<br>   Astonish Beta:<br>   - Fully decoupled UI communicates using REST, JSON.<br>   - Shared validation model between Java backend and AngularJS<br>   - Lead development of front end framework initially in Backbone js then in Angular<br>   - Managing team of developers towards delivering software in very tight timeframe.<br>   - D3.js dashboard<br>   - Project estimation, planning, scheduling.<br><br>   VPC 2x Reporting<br>   - build from scratch D3.js based reporting system including visualizing customer acquisition<br>   - REST/JSON architecture <br><br>Key Technologies: Javascript, Angular, Backbone, D3 Visualisation Library, Jasmine unit testing, Grunt, Bash Scripting, Python, ASP.net, Backbone, apache, nginx"
+    },
+    {
+      "title": "Designer/Developer",
+      "type": "secondary",
+      "subTitles": {
+        "Company Name": "Self Employed",
+        "Dates Employed": "Jan 2012 - Jun 2013",
+        "Employment Duration": "1 yr 6 mos",
+        "Location": "Groton, CT"
+      },
+      "bodyHTML": "Contract work in UK on various it projects, primarily as a front end web developer and UI/UX consultant. Also Drupal customization and module development including responsive design to support mobile."
+    },
+    {
+      "title": "Web Developer",
+      "subTitles": {
+        "Company Name": "Self employed",
+        "Dates Employed": "Jan 2011 - Dec 2011",
+        "Employment Duration": "12 mos",
+        "Location": "London, United Kingdom"
+      },
+      "bodyHTML": "Contract work in UK on various it projects, primarily as a front end web developer. Also helping out with art projects.  "
+    },
+    {
+      "title": "Websites Manager (started as Contract Developer)",
+      "subTitles": {
+        "Company Name": "Department of Corrections",
+        "Dates Employed": "Jun 2008 - Aug 2010",
+        "Employment Duration": "2 yrs 3 mos",
+        "Location": "Wellington, New Zealand, Head Office"
+      },
+      "bodyHTML": "I started with the Department of Corrections as a contract developer doing MySource Matrix and web design consultancy. After six months I was asked to take over Websites Manager position when the previous manager left.<br><br>Key Duties<br> - managing web team<br> - recruiting contractors<br> - interfacing with and managing work by the four key vendors<br> - managing web projects for all departments<br> - advising other teams within the department on internet/intranet strategy<br> - forming community of practice <br><br>Key Projects:<br> - Lead the redesign and re-architecture of the intranet<br> - selection and engagement of Graphic Design and Information Architecture agency<br> - coordinating this work across all parts of one of New Zealand's largest government departments<br> - coordinating web 20 web editors from various teams <br> - prison services manual rewrite and new functionality<br><br>Key Technologies: MySource Matrix CMS, Javascript, HTML, Bash Scripting, Python, jQuery  "
+    },
+    {
+      "title": "Designer/Developer",
+      "subTitles": {
+        "Company Name": "Katipo Communications Limited",
+        "Dates Employed": "Oct 2007 - Jun 2008",
+        "Employment Duration": "9 mos",
+        "Location": "Wellington, New Zealand"
+      },
+      "bodyHTML": "Graphic design for the kete project http://kete.net.nz. Ruby on rails development, front end development, e-government compliance and graphic design."
+    },
+    {
+      "title": "Designer/Developer/Implementor",
+      "subTitles": {
+        "Company Name": "Squiz New Zealand",
+        "Dates Employed": "May 2006 - Sep 2007",
+        "Employment Duration": "1 yr 5 mos",
+        "Location": "Wellington & Wairarapa, New Zealand"
+      },
+      "bodyHTML": "Responsibilities:<br> - Web standards compliant implementations using MySource Matrix <br> - Technical sales <br> - Presenting at conferences<br> - Delivering Training <br><br>Key Projects:<br> - Department of Corrections Implementation (e-government compliant)<br> - NIWA site rebuild and migration<br> - worked closely with Royal New Zealand foundation for the blind to develop techniques for delivering dynamic content to screen reader users."
+    },
+    {
+      "title": "Developer",
+      "subTitles": {
+        "Company Name": "Origin Design Company",
+        "Dates Employed": "Mar 2005 - May 2006",
+        "Employment Duration": "1 yr 3 mos",
+        "Location": "Wellington, New Zealand"
+      },
+      "bodyHTML": "Sole developer in a four person web team, created Origin CMS and simple extensible content management system with a strong focus on ease of use. Action scripting and various other front end web development projects."
+    },
+    {
+      "title": "Contract Developer/Designer",
+      "subTitles": {
+        "Company Name": "Saatchi & Saatchi New Zealand",
+        "Dates Employed": "Jan 2005 - Mar 2005",
+        "Employment Duration": "3 mos",
+        "Location": "Auckland, New Zealand"
+      },
+      "bodyHTML": "Contractor developing flash games and low bandwidth dynamic banner ads using Actionscript, writing requirements specifications, and general design work."
+    },
+    {
+      "title": "Lead Developer",
+      "subTitles": {
+        "Company Name": "Jericho",
+        "Dates Employed": "Feb 2002 - Apr 2003",
+        "Employment Duration": "1 yr 3 mos",
+        "Location": "Wellington, New Zealand"
+      },
+      "bodyHTML": "Complete rewrite of Jericho's flagship product SmartMail. I was responsible for most of the system design and development. Successfully launched in under 6 months."
+    },
+    {
+      "title": "Developer",
+      "subTitles": {
+        "Company Name": "iSoft Limited",
+        "Dates Employed": "Mar 2001 - Jan 2002",
+        "Employment Duration": "11 mos",
+        "Location": "Wellignton, New Zealand"
+      },
+      "bodyHTML": "Writing Visual Basic applications, database maintenance, report writing, Unix-windows integration and maintenance of a large Informix 4gl payroll system. Setting up Redhat Linux firewall and database server."
+    },
+    {
+      "title": "Analyst/Programmer",
+      "subTitles": {
+        "Company Name": "Tait Communications",
+        "Dates Employed": "Mar 1999 - Jan 2001",
+        "Employment Duration": "1 yr 11 mos",
+        "Location": "Christchurch, New Zealand"
+      },
+      "bodyHTML": "March 1999-Jan 2001. Tait Electronics -"
+    },
+    {
+      "title": "Stock Reconciliation Temp",
+      "subTitles": {
+        "Company Name": "Next Employment Ltd",
+        "Dates Employed": "Jan 1997 - Dec 1998",
+        "Employment Duration": "1 yr",
+        "Location": "London, United Kingdom"
+      },
+      "bodyHTML": "At Bank of Scotland and Midlands Bank reconciling share accounts with registrars working to tight deadlines with a high level of accuracy as much of my work resulted in large transfers of stock (winter job - spent summers backpacking in Europe)."
+    }
+  ],
+  "education": [
+    {
+      "institution": "Massey University",
+      "subTitles": {
+        "Degree Name": "Bachelor of Design 1st Class Honors",
+        "Field Of Study": "Interactive Design",
+        "Dates attended or expected graduation": "Mar 2001 - Nov 2004"
+      },
+      "bodyHTML": "A+ for final project, 1st Prize TUANZ student award for final project"
+    }
+  ]
+}

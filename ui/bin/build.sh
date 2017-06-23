@@ -32,7 +32,7 @@ echo "copying js - libs"
 # copy the libs across
 cp ./node_modules/vue/dist/vue.min.js ./../server/public/js/
 cp ./node_modules/d3/build/d3.min.js ./../server/public/js/
-
+cp ./node_modules/moment/min/moment.min.js ./../server/public/js/
 echo "building blogs"
 # build blogs
 #  1. remove any temp build files

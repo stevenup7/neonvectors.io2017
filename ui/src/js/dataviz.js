@@ -7,6 +7,16 @@ function loadPage (src) {
     });
 }
 
+function loadJSON (src) {
+  return fetch (src).then(
+    (response) => {
+      return response.json().then( (data) => {
+        return data;
+      });
+    });
+}
+
+
 function removeTempScripts() {
   var elements = document.getElementsByClassName('temp-script');
   while(elements.length > 0){
