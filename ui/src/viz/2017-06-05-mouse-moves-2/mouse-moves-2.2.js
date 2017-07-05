@@ -15,8 +15,7 @@ var xScale = d3.scaleLinear()
 var yScale = d3.scaleLinear()
       .range([chart.availableHeight, chart.margins.top]);
 
-console.log([chart.availableWidth, chart.margins.left, chart.availableHeight, chart.margins.top]);
-
+// console.log([chart.availableWidth, chart.margins.left, chart.availableHeight, chart.margins.top]);
 
 function getLineFn (xprop, yprop) {
   return d3.line()
@@ -27,13 +26,20 @@ function getLineFn (xprop, yprop) {
     .y(function(d) {
       return yScale(d[yprop]);
     });
-
 }
 
 var rawData = JSON.parse(localStorage.getItem('mouseMoves2Data'));
 var data = [];
 var maxDist = 0;
 var minDist = 0;
+var bucketedLeadLag = [];
+
+var stepSize = 22.5;
+var llAvg = 0
+var llCount = 0;
+var stepNumber = 1;
+var currTotal = 0;
+var count = 0;
 
 rawData.run1.forEach(function (d, i) {
   var cAngle = getAngle(rawData.circle, d.circlePos);
@@ -47,6 +53,7 @@ rawData.run1.forEach(function (d, i) {
   if (leadLag < -180) {
     leadLag =leadLag = cAngle - mAngle + 360;
   }
+  leadLag = -leadLag;
   var radius = linearDist(rawData.circle, d.mousePos) - rawData.circle.radius;
   var actualRadius = radius;
   if (radius > 0) {
@@ -63,30 +70,50 @@ rawData.run1.forEach(function (d, i) {
   data.push({
     x: i,
     angle: cAngle,
-    dist: dist,
+    'Distance': dist,
     distActual: actualDist,
-    leadLag: leadLag,
-    radius: radius,
+    'Lead/Lag': leadLag,
+    'Radius': radius,
     actualRadius: actualRadius
   });
 
-
   maxDist = Math.max(leadLag, dist, maxDist, actualDist, radius, actualRadius);
   minDist = Math.min(leadLag, dist, minDist, actualDist, radius, actualRadius);
+
+  // console.log(stepNumber * stepSize);
+  if (mAngle < stepNumber * stepSize) {
+    currTotal += leadLag;
+    count ++;
+  } else {
+    //console.log(count);
+    stepNumber ++;
+    bucketedLeadLag.push(currTotal/count);
+    currTotal = 0;
+    count = 0;
+  }
+
 });
+bucketedLeadLag.push(currTotal/count);
 
 xScale.domain([0, 360]);
 yScale.domain([minDist, maxDist]);
 
-var props = ['dist', 'distActual', 'leadLag', 'radius', 'actualRadius'];
-var props = ['dist', 'leadLag', 'radius'];
+var props =  ['Distance', 'distActual', 'Lead/Lag', 'Radius', 'actualRadius'];
+var labels = [
+  'Distance from edge of circle (pixels)',
+  'Distance from center of circle (pixels)',
+  'Leading or Lagging the circle (degrees)',
+  'Radius accuracy from edge of circle (pixels)',
+  'Radius accuracy for center of circle (pixels)'
+]
+//var props = ['Distance', 'Lead/Lag', 'Radius'];
 var c = chart.nvcolors10();
 var k = new D3VizKey('#key');
-//c();c();c();c();
-props.forEach( (p) => {
+
+props.forEach( (p, i) => {
   var valueline = getLineFn('angle', p);
   var col = c();
-  k.addLine(p, '#' + col, 2);
+  k.addLine(labels[i], col, 2);
   chart.canvas.append("path")
     .data([data])
     .attr("class", "line")
@@ -95,6 +122,7 @@ props.forEach( (p) => {
     })
     .attr("d", valueline);
 });
+
 
 // get the angle that this line is at
 function getAngle (c, p) {
@@ -110,3 +138,94 @@ function linearDist(p1, p2 ){
 
 chart.addYAxis('y-axis', yScale);
 chart.addXAxis('x-axis', xScale);
+
+
+var chart2 = new D3VizHelper('#canvas2', undefined, 520, {
+  top: 100,
+  left: 100,
+  bottom: 20,
+  right: 100
+});
+
+
+// draw the base circle - the animation path
+chart2.canvas.append("text")
+  .attr('class', 'viz-title viz-title-centered')
+  .text('Your circle')
+  .attr('transform', 'translate('+ (chart2.margins.left + 50) + ', 70)')
+
+chart2.canvas.append('circle')
+  .attr('cx', chart2.margins.left + 50)
+  .attr('cy', chart2.margins.top + 50)
+  .attr('r', 50)
+  .attr('fill', 'white')
+  .attr('stroke', '#ddd');
+
+// build a data set to represent the shape of circle actually drawn
+
+var data = [];
+rawData.run1.forEach(function (d, i) {
+  data.push({
+    x: +d.mousePos.x,
+    y: +d.mousePos.y
+  });
+})
+
+var valueline = d3.line()
+    .curve(d3.curveBasis)
+    .x(function(d) {
+      return d.x / 3 + 68
+    })
+    .y(function(d) {
+      return d.y / 3 + 68
+    });
+
+chart2.canvas.append("path")
+  .data([data])
+  .attr("class", "line")
+  .style("stroke", function () {
+    return c(0)
+  })
+  .attr("d", valueline);
+
+
+// console.log(bucketedLeadLag);
+
+
+
+chart2.canvas.append("text")
+  .attr('class', 'viz-title viz-title-centered')
+  .text('Lead Lag')
+  .attr('transform', 'translate(' + (chart2.margins.left + 250) + ', 70)')
+
+// draw the base circle - the animation path
+chart2.canvas.append('circle')
+  .attr('cx', chart2.margins.left + 250)
+  .attr('cy', chart2.margins.top + 50)
+  .attr('r', 50)
+  .attr('fill', 'white')
+  .attr('stroke', '#ddd');
+
+
+var ang = 22.5/1;
+
+bucketedLeadLag.forEach((ll, i) => {
+  console.log(ll);
+
+  var p = new Point(chart2.margins.left + 250, chart2.margins.top + 50);
+  var p1 = p.pointAtAngleDeg(ang, 50);
+  var p2 = p.pointAtAngleDeg(ang, 50 + ll);
+  var color = c(1);
+  if (ll > 0) {
+    color = c(0);
+  }
+  chart2.canvas.append('line')
+    .attr('x1', p1.x)
+    .attr('y1', p1.y)
+    .attr('x2', p2.x)
+    .attr('y2', p2.y)
+    .attr('stroke-width', 2)
+    .attr('stroke', color);
+
+  ang += 22.5;
+});

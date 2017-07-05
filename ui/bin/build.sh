@@ -1,4 +1,5 @@
 
+echo "building sass"
 # build sass (builds to dist)
 npm run build-sass
 
@@ -8,7 +9,6 @@ if [ ! -d ../server/public/js ]; then
     mkdir ../server/public/js
 fi
 
-# make directories we need
 if [ ! -d ../server/public/css ]; then
     echo "making directory css"
     mkdir ../server/public/css
@@ -33,24 +33,23 @@ echo "copying js - libs"
 cp ./node_modules/vue/dist/vue.min.js ./../server/public/js/
 cp ./node_modules/d3/build/d3.min.js ./../server/public/js/
 cp ./node_modules/moment/min/moment.min.js ./../server/public/js/
-echo "building blogs"
+
 # build blogs
+echo "building blogs"
 #  1. remove any temp build files
 rm -rf ./src/blogs/.blogoutput
-#  2. build the json files
+#  2. remove all the old data
+rm -rf ../server/data/blog/*
+#  3. build the json files
 npm run build-blogs
-#  3. move the built blogs to the server
-rm -rf ../server/data/blog
-mv ./src/blogs/.blogoutput ./../server/data/blog
 
-echo "building viz"
 # build viz
-#  1. remove any temp build files
-rm -rf ./src/viz/*.json
+echo "building viz"
+
+rm -rf ../server/data/viz/*
 #  2. build the json files
 npm run build-viz
 #  3. move the built blogs to the server
-rm -rf ../server/data/viz
 cp -r ./src/viz ./../server/data/
 #  4. now find all the js files in the dataviz folder
 #     and put them into public/js so they can be served by nginx

@@ -55,12 +55,9 @@ router.get('/tags/:tag', function (req, res) {
   });
 });
 
-
-
 router.get('/tags.json', function (req, res) {
   res.json(require('../data/blog/blog-tags.json'));
 });
-
 
 router.get('/:id', function (req, res) {
   var blog = require('../data/blog/' + req.params.id + '.json');

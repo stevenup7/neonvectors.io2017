@@ -9,7 +9,7 @@
         "src",
         "bin"
       ],
-      "extensions": "js, ejs, sass, scss, html"
+      "extensions": "js, ejs, sass, scss, html, json"
     }
   },
   "scripts": {
@@ -23,7 +23,7 @@
   "author": "steven@upritchard.com",
   "license": "ISC",
   "dependencies": {
-    "bulma": "^0.4.1",
+    "bulma": "^0.4.2",
     "d3": "^4.8.0",
     "font-awesome": "^4.7.0",
     "lodash": "^4.17.4",

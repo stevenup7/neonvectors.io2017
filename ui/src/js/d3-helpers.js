@@ -56,19 +56,21 @@ class D3VizHelper {
     var idx = 0;
     return function (i) {
       var pallet = [
-        'F25EED',
-        '77DEFD',
-        'F06449',
-        '00BFB2',
-        '6457A6',
-        'DBD56E',
-        'DADAD9',
-        '9EB25D',
-        '5C2751',
-        'DB5461'
+        '#F25EED',
+        '#77DEFD',
+        '#F06449',
+        '#00BFB2',
+        '#6457A6',
+        '#DBD56E',
+        '#DADAD9',
+        '#9EB25D',
+        '#5C2751',
+        '#DB5461'
       ];
       if (typeof i === 'undefined') {
         i = idx % pallet.length;
+      } else {
+        i = i % pallet.length;
       }
       idx ++;
       return pallet[i];
@@ -94,7 +96,6 @@ class D3VizKey {
     var key = document.createElement('div');
     key.classList.add('key-line');
     key.style.cssText = 'border-bottom: ' + strokeWidth + 'px solid ' + color + '; width: 10px; height: 13px; float: left; margin-right: 5px;' ;
-    console.log(color);
     var nameEl = document.createElement('span');
     nameEl.appendChild(document.createTextNode(' ' + name));
     wrapper.appendChild(key);

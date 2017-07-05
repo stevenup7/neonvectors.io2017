@@ -55,7 +55,16 @@
       </div>
     </footer>
 
+    <div class="modal" id="message-modal">
+      <div class="modal-background" v-on:click="hide"></div>
+      <div class="modal-content">
+        <div id="message-modal-content">{{message}}</div>
+      </div>
+      <button class="modal-close"></button>
+    </div>
+    <script src="/static/js/modal.js"></script>
     <script src="/static/js/vectorize.js"></script>
     <script src="/static/js/blog.js"></script>
+    <script src="/static/js/math2d.js"></script>
   </body>
 </html>

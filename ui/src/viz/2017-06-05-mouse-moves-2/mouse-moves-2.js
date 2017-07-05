@@ -2,7 +2,9 @@
   var currPos;        // track the current postion of the mouse;
   var radius = 150;   // radius of the circle
   var runNumber = 0;  // how many tries
-
+  if (localStorage.getItem('practice') === 'y') {
+    runNumber = 1;
+  }
   var data = {
     run1: [],
     run2: [],
@@ -65,8 +67,8 @@
         .on('end', function () {
           runNumber ++;
           if (runNumber === 1) {
-            alert('right that was your practice, the next 3 tries are for real');
-
+            showMessage('right that was your practice, the next 3 tries are for real');
+            localStorage.setItem('practice', 'y');
           } else {
             var run = 'run' + (runNumber -1);
             console.log(run);
@@ -88,7 +90,7 @@
               data.target = {};
               data.target.radius = 20;
               window.localStorage.setItem('mouseMoves2Data', JSON.stringify(data));
-              alert('you can now go to the next page to see the data');
+              showMessage('you can now go to the next page to see the data');
             }
           }
         });
@@ -142,5 +144,12 @@
 
   }
 
+  var isInitModalInit = false;
+
+  function showMessage (msg) {
+    bus.$emit('showMessage', {
+      message: msg
+    });
+  }
 
 })();

@@ -1,7 +1,8 @@
 const fs      = require('fs');
 const process = require('process');
 
-var vizPath  = process.cwd() + '/src/viz/';
+var vizPath    = process.cwd() + '/src/viz/';
+var vizOutput  = process.cwd() + '/../server/data/viz/'
 
 // get a list of all the blog files
 new Promise(function (resolve, reject) {
@@ -16,10 +17,7 @@ new Promise(function (resolve, reject) {
     resolve(vizList);
   });
 }).then( function (vizList) {
-
   var vizJSONFile = JSON.stringify(vizList, '  ', '  ');
-  fs.writeFileSync(vizPath + 'viz-list.json', vizJSONFile);
+  fs.writeFileSync(vizOutput + 'viz-list.json', vizJSONFile);
 
-
-  console.log('vizlist', vizList);
 });

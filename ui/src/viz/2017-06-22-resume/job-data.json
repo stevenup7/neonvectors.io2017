@@ -1,5 +1,5 @@
 {
-  "type": "jerb-done",
+  "type": "done",
   "jobs": [
     {
       "title": "UI Tech Lead at Fidelity",
@@ -53,7 +53,7 @@
       "bodyHTML": "Contract work in UK on various it projects, primarily as a front end web developer. Also helping out with art projects.  "
     },
     {
-      "title": "Websites Manager (started as Contract Developer)",
+      "title": "Websites Manager",
       "subTitles": {
         "Company Name": "Department of Corrections",
         "Dates Employed": "Jun 2008 - Aug 2010",
@@ -152,6 +152,23 @@
         "Dates attended or expected graduation": "Mar 2001 - Nov 2004"
       },
       "bodyHTML": "A+ for final project, 1st Prize TUANZ student award for final project"
+    },
+    {
+      "institution": "University of Canterbury",
+      "subTitles": {
+        "Degree Name": "Unfinished - Bachelor of Science",
+        "Field Of Study": "Molecular Genetics",
+        "Dates attended or expected graduation": "Mar 1990 - Nov 1992"
+      },
+      "bodyHTML": "I never finished this degree "
+    },
+    {
+      "institution": "Christchurch Boys High School",
+      "subTitles": {
+        "Dates attended or expected graduation": "Mar 1985 - Nov 1989"
+      },
+      "bodyHTML": "Hooray high schools "
     }
+
   ]
 }

@@ -3,7 +3,7 @@ const fs      = require('fs');
 const process = require('process');
 
 var blogPath  = process.cwd() + '/src/blogs/';
-var blogOutputPath  = blogPath + '.blogoutput/';
+var blogOutputPath  = process.cwd() + '/../server/data/blog/';
 
 var BlogFile = require('./BlogFile');
 
@@ -23,13 +23,6 @@ new Promise(function (resolve, reject) {
   });
 }).then( function (blogFileList) {
 
-  try {
-    fs.mkdirSync(blogOutputPath, 0766);
-  } catch (e) {
-    console.log('Error creating blog output directory');
-    console.log(e);
-    // igonore exists already
-  }
   // sort the files
   blogFileList = _.sortBy(blogFileList, 'fileName');
 

@@ -28,13 +28,11 @@ router.get('/:id', function (req, res) {
   });
 });
 
+
 router.get('/:id/:page', function (req, res) {
   console.log('specific page wtih content ');
   var vizPath =  'data/viz/' + req.params.id  + '/' + req.params.page;
-  fs.realpath(vizPath, function (e,d) {
-    console.log('reeel path');
-    console.log(e, d);
-  });
+  res.setHeader('Cache-Control', 'no-cache');
   fs.readFile(vizPath, 'utf8', function (err, data)  {
     if (err) {
       console.log(err, data);
