@@ -35,7 +35,7 @@ var minDist = 0;
 var bucketedLeadLag = [];
 
 var stepSize = 22.5;
-var llAvg = 0
+var llAvg = 0;
 var llCount = 0;
 var stepNumber = 1;
 var currTotal = 0;
@@ -193,39 +193,73 @@ chart2.canvas.append("path")
 
 
 
-chart2.canvas.append("text")
+var g = chart2.canvas.append("g")
+  .attr('transform', 'translate(' + (chart2.margins.left + 250) + ', 70)');
+
+var arcg = g.append("g")
+  .attr('transform', 'translate(50, 70) rotate(90)');
+
+g.append("text")
   .attr('class', 'viz-title viz-title-centered')
   .text('Lead Lag')
-  .attr('transform', 'translate(' + (chart2.margins.left + 250) + ', 70)')
+  .attr('transform', 'translate(50, 0)');
 
 // draw the base circle - the animation path
-chart2.canvas.append('circle')
-  .attr('cx', chart2.margins.left + 250)
-  .attr('cy', chart2.margins.top + 50)
+g.append('circle')
+  .attr('cx', 50)
+  .attr('cy', 70)
   .attr('r', 50)
-  .attr('fill', 'white')
-  .attr('stroke', '#ddd');
+  .attr('fill', 'none')
+  .attr('stroke', '#666');
 
 
-var ang = 22.5/1;
+var startAngle = 0;
+var pink = 'rgb(242, 94, 237)';
+var blue = 'rgb(119, 222, 253)';
+
+var ppink = 'rgba(242, 94, 237, 0.5)';
+var pblue = 'rgba(119, 222, 253, 0.5)';
 
 bucketedLeadLag.forEach((ll, i) => {
   console.log(ll);
-
-  var p = new Point(chart2.margins.left + 250, chart2.margins.top + 50);
-  var p1 = p.pointAtAngleDeg(ang, 50);
-  var p2 = p.pointAtAngleDeg(ang, 50 + ll);
-  var color = c(1);
+  var innerRadius = 50;
+  var outerRadius = 50;
   if (ll > 0) {
-    color = c(0);
+    outerRadius = 50 + ll;
+  } else {
+    innerRadius = 50 + ll;
   }
-  chart2.canvas.append('line')
-    .attr('x1', p1.x)
-    .attr('y1', p1.y)
-    .attr('x2', p2.x)
-    .attr('y2', p2.y)
-    .attr('stroke-width', 2)
-    .attr('stroke', color);
 
-  ang += 22.5;
+  var arc = d3.arc()
+        .innerRadius(innerRadius)
+        .outerRadius(outerRadius)
+        .startAngle(startAngle  * Math.PI/180)
+        .endAngle((startAngle + 22.5) * Math.PI/180);
+
+  // var p = new Point(chart2.margins.left + 250, chart2.margins.top + 50);
+  // var p1 = p.pointAtAngleDeg(ang, 50);
+  // var p2 = p.pointAtAngleDeg(ang, 50 + ll);
+  // chart2.canvas.append('line')
+  //   .attr('x1', p1.x)
+  //   .attr('y1', p1.y)
+  //   .attr('x2', p2.x)
+  //   .attr('y2', p2.y)
+  //   .attr('stroke-width', 2)
+  //   .attr('stroke', color);
+
+  if (ll > 0) {
+    strokeColor = pink;
+    fillColor   = ppink;
+  } else {
+    strokeColor = blue;
+    fillColor   = pblue;
+  }
+
+
+  arcg.append("path")
+    .style("fill",   fillColor)
+    .style("stroke", strokeColor)
+    .attr("d", arc());
+
+  startAngle += 22.5;
 });
