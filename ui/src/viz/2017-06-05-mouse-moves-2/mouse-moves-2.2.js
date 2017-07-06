@@ -210,7 +210,8 @@ g.append('circle')
   .attr('cy', 70)
   .attr('r', 50)
   .attr('fill', 'none')
-  .attr('stroke', '#666');
+  .attr('stroke', '#999')
+  .attr('stroke-width', '2');
 
 
 var startAngle = 0;
